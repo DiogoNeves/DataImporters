@@ -8,4 +8,4 @@ Each loader outputs:
 The process above is done so that:  
 * Each notebook is independent  
 * We can easily compile a final dataset with different sources  
-* The version information is appended at a single point  
+* Easier to make the split consistent across runs  
