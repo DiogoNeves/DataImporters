@@ -20,3 +20,15 @@ The process above is done so that:
 ## Dataset structure
 
 See [Dataset README](data/dataset/README.md).
+
+## Pipeline
+
+```mermaid
+flowchart TD
+    sa[(Source A)] --> pa([Normalise data and create CSV]);
+    pa --> ia[(Intermediate A)];
+    sb[(Source B)] --> pb([Normalise data and create CSV]);
+    pb --> ib[(Intermediate B)];
+    ia & ib --> c([Compile])
+    c-- Some rows can be rejected at this stage --> d[(Dataset)];
+```
