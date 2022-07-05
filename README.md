@@ -17,6 +17,8 @@ The process above is done so that:
 > pip install -r requirements.txt
 ```
 
+The datasets have to be provided manually (for now).  
+
 ## Dataset structure
 
 See [Dataset README](data/dataset/README.md).
