@@ -1,5 +1,6 @@
 # DataImporters
-A collection of data importers or clean-up for various sources
+
+> A collection of data importers or clean-up for various sources.
 
 Each loader outputs:  
 * a CSV, which is then compiled into a single metadata.csv  
@@ -15,3 +16,7 @@ The process above is done so that:
 ```
 > pip install -r requirements.txt
 ```
+
+## Dataset structure
+
+See [Dataset README](data/dataset/README.md).
