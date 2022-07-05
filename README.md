@@ -9,3 +9,9 @@ The process above is done so that:
 * Each notebook is independent  
 * We can easily compile a final dataset with different sources  
 * Easier to make the split consistent across runs  
+
+## Installation 
+
+```
+> pip install -r requirements.txt
+```
