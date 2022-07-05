@@ -83,4 +83,5 @@ urllib3==1.26.9
 wcwidth==0.2.5
 webencodings==0.5.1
 widgetsnbextension==3.6.1
+xlrd==2.0.1
 xxhash==3.0.0
