@@ -18,6 +18,14 @@ The process above is done so that:
 ```
 
 The datasets have to be provided manually (for now).  
+The scripts expect a data directory:  
+```
+root
+ |- data
+      |- original (where you have to place the soundbanks)
+      |- intermediate (generated)
+      |- dataset (generated)
+```
 
 ## Dataset structure
 
