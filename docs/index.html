@@ -64,6 +64,91 @@ The scripts expect a data directory containing the audio folders:</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>To create a new dataset package, we simply:</p>
+<ol>
+<li>import the <a href="/DataImporters/dataset.html#Dataset"><code>Dataset</code></a>,  </li>
+<li>give it the sources we'd like to include and the path to our data,  </li>
+<li>call <a href="/DataImporters/dataset.html#Dataset.compile"><code>Dataset.compile</code></a></li>
+</ol>
+<p>The library is flexible, but here's the simplest and most common action we perform:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">DataImporters.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s2">&quot;data/&quot;</span>
+<span class="n">SOURCES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;space_divers_mini&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;footsteps_one_ppsfx_004&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;footsteps_two_ppsfx_008&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;edward_v1.1&quot;</span>
+<span class="p">]</span>
+
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">SOURCES</span><span class="p">,</span> <span class="n">DATA_PATH</span><span class="p">)</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/DataImporters/dataset.html#Dataset.compile"><code>Dataset.compile</code></a> will return the newly created metadata _(which has already been saved to <code>DATA_PATH</code>)_.</p>
+<p>We can use it to confirm we did indeed copy all files. Since the metadata aggregates all the source metadata, if a file is missing, it will still be in the metadata.<br>
+On the other hand, this will also let us know when a file has been deleted from the source, but still exists in the dataset folder.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">,</span> <span class="s2">&quot;dataset/audio/&quot;</span><span class="p">)))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If the assertion fails, this could be due to:</p>
+<ul>
+<li>Genuine failure to copy  </li>
+<li>Some files in the target folder need deleting  <ul>
+<li>Please delete them, no code yet</li>
+</ul>
+</li>
+<li>Hash conflict (same content from different sources)  <ul>
+<li>In this case, we must debug the sources and make sure there are no duplicates</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dataset-structure">Dataset structure<a class="anchor-link" href="#Dataset-structure"> </a></h2><p>See <a href="data/dataset/README.md">Dataset README</a>.</p>
 
 </div>

@@ -11,7 +11,7 @@ entries:
       url: /
     - output: web,pdf
       title: Compile Dataset
-      url: compile_dataset.html
+      url: dataset.html
     - output: web,pdf
       title: Dataset Stats
       url: dataset_stats.html

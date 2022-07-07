@@ -2,9 +2,12 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {}
+index = {"sync_audio_files": "00_dataset.ipynb",
+         "Dataset": "00_dataset.ipynb",
+         "load_version": "00_dataset.ipynb",
+         "bump_version": "00_dataset.ipynb"}
 
-modules = []
+modules = ["dataset.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 

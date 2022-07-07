@@ -1,7 +1,7 @@
 {
   "DataImporters": {
     "Overview": "/",
-    "Compile Dataset": "compile_dataset.html",
+    "Compile Dataset": "dataset.html",
     "Dataset Stats": "dataset_stats.html",
     "Loader for Space Divers Mini sound lib": "space_divers_mini.html",
     "Loader for Footsteps PPSFX 004 sound lib": "footsteps_one_ppsfx_004.html",
