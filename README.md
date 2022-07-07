@@ -4,7 +4,9 @@
 
 ## Install
 
-`pip install dataimporters`
+```bash
+pip install dataimporters
+```
 
 ### Downloading Audio Sources
 
@@ -12,10 +14,10 @@ The audio sources have to be provided manually (for now).
 The scripts expect a data directory containing the audio folders:  
 ```
 root
- |- data
-      |- original (where you have to place the soundbanks)
-      |- intermediate (generated)
-      |- dataset (generated)
+ |- data/
+      |- original/ (where you have to place the soundbanks)
+      |- intermediate/ (generated)
+      |- dataset/ (generated)
 ```
 
 ## How to use
@@ -24,6 +26,8 @@ To create a new dataset package, we simply:
 1. import the `Dataset`,  
 1. give it the sources we'd like to include and the path to our data,  
 1. call `Dataset.compile`
+
+This will process all sources and build a final `dataset.zip` file.  
 
 The library is flexible, but here's the simplest and most common action we perform:
 
@@ -59,9 +63,81 @@ If the assertion fails, this could be due to:
 * Hash conflict (same content from different sources)  
   * In this case, we must debug the sources and make sure there are no duplicates
 
-## Dataset structure
+## Dataset Structure
 
-See [Dataset README](data/dataset/README.md).
+```
+dataset/
+  |- README.md
+  |- metadata.csv
+  |- audio/
+       |- Long list of audio files, filenames are the xxhash64 of the content.
+```
+
+### Metadata
+
+`metadata.csv` contains a list of all the files in the dataset and their labels.  
+
+filename | category | label | extra | source | version 
+--- | --- | --- | --- | --- | --- 
+File name, assumes all files inside audio folder | Single major category name | Escaped (“”) comma separated list of labels, in snake_case | Extra text/details available for this row (unstructured) | Name of original sound library, snake_case | Version of the last change. Limited to last change only  
+
+_`version` is a simple incremental integer. If you need to check if a file changed/added simply check if the row `version` is higher than the last `version` you ran. Deletes are not supported yet._
+
+Here's an example from the sample code ran earlier:
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>category</th>
+      <th>label</th>
+      <th>extra</th>
+      <th>source</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>beda557bed5629a2.wav</td>
+      <td>Sci_fi</td>
+      <td>Manipulate,Distant</td>
+      <td>NaN</td>
+      <td>space_divers_mini</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>56b3dae6f6efd75f.wav</td>
+      <td>Sci_fi</td>
+      <td>Impact,Crash_distant</td>
+      <td>NaN</td>
+      <td>space_divers_mini</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 ## Pipeline
 
@@ -80,6 +156,6 @@ Each loader outputs:
 * the files into an intermediate folder  
 
 The process above is done so that:  
-* Each notebook is independent  
+* Each source is independent  
 * We can easily compile a final dataset with different sources  
 * Easier to make the split consistent across runs  

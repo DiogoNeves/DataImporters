@@ -37,7 +37,8 @@ nb_path: "nbs/index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>pip install dataimporters</code></p>
+<div class="highlight"><pre><span></span>pip install dataimporters
+</pre></div>
 
 </div>
 </div>
@@ -48,10 +49,10 @@ nb_path: "nbs/index.ipynb"
 The scripts expect a data directory containing the audio folders:</p>
 
 <pre><code>root
- |- data
-      |- original (where you have to place the soundbanks)
-      |- intermediate (generated)
-      |- dataset (generated)</code></pre>
+ |- data/
+      |- original/ (where you have to place the soundbanks)
+      |- intermediate/ (generated)
+      |- dataset/ (generated)</code></pre>
 
 </div>
 </div>
@@ -70,6 +71,7 @@ The scripts expect a data directory containing the audio folders:</p>
 <li>give it the sources we'd like to include and the path to our data,  </li>
 <li>call <a href="/DataImporters/dataset.html#Dataset.compile"><code>Dataset.compile</code></a></li>
 </ol>
+<p>This will process all sources and build a final <code>dataset.zip</code> file.</p>
 <p>The library is flexible, but here's the simplest and most common action we perform:</p>
 
 </div>
@@ -149,11 +151,107 @@ On the other hand, this will also let us know when a file has been deleted from 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dataset-structure">Dataset structure<a class="anchor-link" href="#Dataset-structure"> </a></h2><p>See <a href="data/dataset/README.md">Dataset README</a>.</p>
+<h2 id="Dataset-Structure">Dataset Structure<a class="anchor-link" href="#Dataset-Structure"> </a></h2>
+<pre><code>dataset/
+  |- README.md
+  |- metadata.csv
+  |- audio/
+       |- Long list of audio files, filenames are the xxhash64 of the content.</code></pre>
+<h3 id="Metadata">Metadata<a class="anchor-link" href="#Metadata"> </a></h3><p><code>metadata.csv</code> contains a list of all the files in the dataset and their labels.</p>
+<table>
+<thead><tr>
+<th>filename</th>
+<th>category</th>
+<th>label</th>
+<th>extra</th>
+<th>source</th>
+<th>version </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File name, assumes all files inside audio folder</td>
+<td>Single major category name</td>
+<td>Escaped (“”) comma separated list of labels, in snake_case</td>
+<td>Extra text/details available for this row (unstructured)</td>
+<td>Name of original sound library, snake_case</td>
+<td>Version of the last change. Limited to last change only  </td>
+</tr>
+</tbody>
+</table>
+<p><em><code>version</code> is a simple incremental integer. If you need to check if a file changed/added simply check if the row <code>version</code> is higher than the last <code>version</code> you ran. Deletes are not supported yet.</em></p>
+<p>Here's an example from the sample code ran earlier:</p>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>category</th>
+      <th>label</th>
+      <th>extra</th>
+      <th>source</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>beda557bed5629a2.wav</td>
+      <td>Sci_fi</td>
+      <td>Manipulate,Distant</td>
+      <td>NaN</td>
+      <td>space_divers_mini</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>56b3dae6f6efd75f.wav</td>
+      <td>Sci_fi</td>
+      <td>Impact,Crash_distant</td>
+      <td>NaN</td>
+      <td>space_divers_mini</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Pipeline">Pipeline<a class="anchor-link" href="#Pipeline"> </a></h2>
@@ -172,7 +270,7 @@ flowchart TD
 </ul>
 <p>The process above is done so that:</p>
 <ul>
-<li>Each notebook is independent  </li>
+<li>Each source is independent  </li>
 <li>We can easily compile a final dataset with different sources  </li>
 <li>Easier to make the split consistent across runs  </li>
 </ul>
