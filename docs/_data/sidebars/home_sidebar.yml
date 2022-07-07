@@ -10,23 +10,32 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Compile Dataset
+      title: Core
+      url: core.html
+    - output: web,pdf
+      title: Dataset Building
       url: dataset.html
     - output: web,pdf
       title: Dataset Stats
       url: dataset_stats.html
     - output: web,pdf
-      title: Loader for Space Divers Mini sound lib
-      url: space_divers_mini.html
+      title: Working with Sources
+      url: sources.html
+    - output: web,pdf
+      title: Source Interface
+      url: sources_core.html
+    - output: web,pdf
+      title: Source / Space Divers Mini
+      url: source_space_divers_mini.html
     - output: web,pdf
       title: Loader for Footsteps PPSFX 004 sound lib
-      url: footsteps_one_ppsfx_004.html
+      url: source_footsteps_one_ppsfx_004.html
     - output: web,pdf
       title: Loader for Footsteps PPSFX 008 sound lib
-      url: footsteps_two_ppsfx_008.html
+      url: source_footsteps_two_ppsfx_008.html
     - output: web,pdf
       title: Loader for Edward sound lib
-      url: edward_v1.1.html
+      url: source_edward_v1.1.html
     output: web
     title: DataImporters
   output: web

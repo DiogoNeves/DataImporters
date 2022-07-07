@@ -56,6 +56,15 @@ import os
 assert len(os.listdir(os.path.join(DATA_PATH, "dataset/audio/"))) == len(metadata)
 ```
 
+Everything is looking good, we should bump the `version`.
+
+```python
+#hide_output
+
+from DataImporters.core import bump_version
+bump_version()
+```
+
 If the assertion fails, this could be due to:  
 * Genuine failure to copy  
 * Some files in the target folder need deleting  

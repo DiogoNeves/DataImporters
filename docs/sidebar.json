@@ -1,11 +1,14 @@
 {
   "DataImporters": {
     "Overview": "/",
-    "Compile Dataset": "dataset.html",
+    "Core": "core.html",
+    "Dataset Building": "dataset.html",
     "Dataset Stats": "dataset_stats.html",
-    "Loader for Space Divers Mini sound lib": "space_divers_mini.html",
-    "Loader for Footsteps PPSFX 004 sound lib": "footsteps_one_ppsfx_004.html",
-    "Loader for Footsteps PPSFX 008 sound lib": "footsteps_two_ppsfx_008.html",
-    "Loader for Edward sound lib": "edward_v1.1.html"
+    "Working with Sources": "sources.html",
+    "Source Interface": "sources_core.html",
+    "Source / Space Divers Mini": "source_space_divers_mini.html",
+    "Loader for Footsteps PPSFX 004 sound lib": "source_footsteps_one_ppsfx_004.html",
+    "Loader for Footsteps PPSFX 008 sound lib": "source_footsteps_two_ppsfx_008.html",
+    "Loader for Edward sound lib": "source_edward_v1.1.html"
   }
 }

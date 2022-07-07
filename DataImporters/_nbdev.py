@@ -2,12 +2,15 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"sync_audio_files": "00_dataset.ipynb",
-         "Dataset": "00_dataset.ipynb",
-         "load_version": "00_dataset.ipynb",
-         "bump_version": "00_dataset.ipynb"}
+index = {"load_version": "00_core.ipynb",
+         "bump_version": "00_core.ipynb",
+         "sync_audio_files": "01_dataset.ipynb",
+         "Dataset": "01_dataset.ipynb",
+         "Source": "04_sources_core.ipynb"}
 
-modules = ["dataset.py"]
+modules = ["core.py",
+           "dataset.py",
+           "sources/core.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 
