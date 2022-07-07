@@ -30,7 +30,7 @@ flowchart TD
     pa --> ia[(Intermediate A)];
     sb[(Source B)] --> pb([Normalise data and create CSV]);
     pb --> ib[(Intermediate B)];
-    ia & ib --> c([Compile])
+    ia & ib & a(WIP: Manual annotations by hash) --> c([Compile])
     c-- Some rows can be rejected at this stage --> d[(Dataset)];
 ```
 
