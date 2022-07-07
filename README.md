@@ -1,15 +1,15 @@
-# DataImporters
+# Audio Data Importers
+> A collection of data importers for various audio sources. A loose manual data pipeline.
 
-> A collection of data importers or clean-up for various sources.
 
-## Installation 
+## Install
 
-```
-> pip install -r requirements.txt
-```
+`pip install dataimporters`
 
-The datasets have to be provided manually (for now).  
-The scripts expect a data directory:  
+### Downloading Audio Sources
+
+The audio sources have to be provided manually (for now).  
+The scripts expect a data directory containing the audio folders:  
 ```
 root
  |- data
@@ -17,6 +17,8 @@ root
       |- intermediate (generated)
       |- dataset (generated)
 ```
+
+## How to use
 
 ## Dataset structure
 
