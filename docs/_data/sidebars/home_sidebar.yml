@@ -21,24 +21,28 @@ entries:
     - output: web,pdf
       title: Working with Sources
       url: sources.html
-    - output: web,pdf
-      title: Source Interface
-      url: sources_core.html
-    - output: web,pdf
-      title: Source / Space Divers Mini
-      url: source_space_divers_mini.html
-    - output: web,pdf
-      title: Source / Footsteps One PPSFX 004
-      url: source_footsteps_one_ppsfx_004.html
-    - output: web,pdf
-      title: Source / Footsteps Two PPSFX 008
-      url: source_footsteps_two_ppsfx_008.html
-    - output: web,pdf
-      title: Source / Edward v1.1
-      url: source_edward_v1.1.html
-    - output: web,pdf
-      title: Source / Barefoot on Metal by Sonniss
-      url: barefoot_metal_sonniss.html
+      subfolders:
+      - output: web
+        subfolderitems:
+        - output: web,pdf
+          title: Source Interface
+          url: sources_core.html
+        - output: web,pdf
+          title: Space Divers Mini
+          url: source_space_divers_mini.html
+        - output: web,pdf
+          title: Footsteps One PPSFX 004
+          url: source_footsteps_one_ppsfx_004.html
+        - output: web,pdf
+          title: Footsteps Two PPSFX 008
+          url: source_footsteps_two_ppsfx_008.html
+        - output: web,pdf
+          title: Edward v1.1
+          url: source_edward_v1.1.html
+        - output: web,pdf
+          title: Barefoot on Metal by Sonniss
+          url: barefoot_metal_sonniss.html
+        title: Sources
     output: web
     title: DataImporters
   output: web
