@@ -4,9 +4,15 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"load_version": "00_core.ipynb",
          "bump_version": "00_core.ipynb",
-         "sync_audio_files": "01_dataset.ipynb",
          "Dataset": "01_dataset.ipynb",
-         "Source": "04_sources_core.ipynb"}
+         "AUDIO_EXTENSIONS": "04_sources_core.ipynb",
+         "Source": "04_sources_core.ipynb",
+         "normalise_label": "04_sources_core.ipynb",
+         "get_footstep_type": "04_sources_core.ipynb",
+         "get_filenames": "04_sources_core.ipynb",
+         "get_hash": "04_sources_core.ipynb",
+         "sync_hashed_audio_files": "04_sources_core.ipynb",
+         "process": "04_sources_core.ipynb"}
 
 modules = ["core.py",
            "dataset.py",

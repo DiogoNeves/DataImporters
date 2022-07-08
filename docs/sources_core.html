@@ -47,8 +47,249 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Source" class="doc_header"><code>class</code> <code>Source</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Source</code>(<strong><code>name</code></strong>:<code>str</code>)</p>
+<h2 id="Source" class="doc_header"><code>class</code> <code>Source</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Source</code>(<strong><code>data_path</code></strong>)</p>
 </blockquote>
+<p>All sources should implement this class.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Source.get_files" class="doc_header"><code>Source.get_files</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_files</code>(<strong><code>root_path</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>List of paths and files to process, as returned by <a href="/DataImporters/sources_core.html#get_filenames"><code>get_filenames</code></a>.</p>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Source.get_category" class="doc_header"><code>Source.get_category</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_category</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Category name for the given file (most sources hardcode a single category).</p>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Source.get_labels" class="doc_header"><code>Source.get_labels</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_labels</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>List of labels for the given file.</p>
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Source.get_extra" class="doc_header"><code>Source.get_extra</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_extra</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Extra information for the given file.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Useful-functions-to-process-the-filenames">Useful functions to process the filenames<a class="anchor-link" href="#Useful-functions-to-process-the-filenames"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="normalise_label" class="doc_header"><code>normalise_label</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>normalise_label</code>(<strong><code>label</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Normalise a label to be used in the metadata
+(<a href="/DataImporters/sources_core.html#process"><code>process</code></a> should call this automatically).</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_footstep_type" class="doc_header"><code>get_footstep_type</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_footstep_type</code>(<strong><code>filename</code></strong>:<code>str</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Some-other-useful-functions">Some other useful functions<a class="anchor-link" href="#Some-other-useful-functions"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_filenames" class="doc_header"><code>get_filenames</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L63" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_filenames</code>(<strong><code>root_path</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>List audio filenames in the directory.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_hash" class="doc_header"><code>get_hash</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_hash</code>(<strong><code>file_path</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Get the xxhash64 hash of the file.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Processing-Sources">Processing Sources<a class="anchor-link" href="#Processing-Sources"> </a></h2><p>For the most part, implementing the interface above should be enough to call <a href="/DataImporters/sources_core.html#process"><code>process</code></a>.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="process" class="doc_header"><code>process</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process</code>(<strong><code>source</code></strong>:<a href="/DataImporters/sources_core.html#Source"><code>Source</code></a>)</p>
+</blockquote>
+<p>Process source and return the metadata.</p>
 
 </div>
 
