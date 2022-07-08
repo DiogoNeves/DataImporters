@@ -41,7 +41,6 @@ VERSION = load_version()
 ```
 
 ```python
-#hide_output
 from DataImporters.sources.core import process
 from DataImporters.sources.space_divers_mini import SpaceDiversMini
 from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
@@ -64,6 +63,13 @@ for source in sources:
 metadata = Dataset(sources, DATA_PATH).compile()
 metadata.shape[0]
 ```
+
+
+
+
+    1324
+
+
 
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
 
