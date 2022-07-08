@@ -42,7 +42,7 @@ class Dataset:
 
     def _package_data(self):
         # It syncs with existing dataset, only zipping changed files
-        os.system("cd {} ; zip -qq -FSr dataset.zip {}".format(self.data_path, self.output_path))
+        os.system("cd {} ; zip -qq -FSr dataset.zip dataset/".format(self.data_path))
 
     def compile(self) -> pd.DataFrame:
         """Compiles a dataset and returns the newly created metadata (already saved)."""

@@ -62,6 +62,7 @@ for source in sources:
     process(source, DATA_PATH, VERSION)
 
 metadata = Dataset(sources, DATA_PATH).compile()
+metadata.shape[0]
 ```
 
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
