@@ -4,6 +4,8 @@ __all__ = ['Dataset']
 
 # Cell
 
+from .sources.core import Source, process
+
 import os
 import shutil
 import pandas as pd
@@ -21,7 +23,7 @@ def _sync_audio_files(source_dir: str, target_dir: str):
 # Cell
 
 class Dataset:
-    def __init__(self, sources: list[str], data_path: str):
+    def __init__(self, sources: list[Source], data_path: str):
         self.sources = sources
         self.data_path = data_path
         self.intermediate_path = os.path.join(data_path, "intermediate/")
@@ -34,7 +36,7 @@ class Dataset:
             os.makedirs(self.audio_output_path)
 
     def _compile_source(self, source: str):
-        source_path = os.path.join(self.intermediate_path, source)
+        source_path = os.path.join(self.intermediate_path, source.name)
         _sync_audio_files(source_path, self.audio_output_path)
         return pd.read_csv(os.path.join(source_path, "metadata.csv"))
 

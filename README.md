@@ -23,6 +23,7 @@ root
 ## How to use
 
 To create a new dataset package, we simply:  
+1. Define and process all sources,
 1. import the `Dataset`,  
 1. give it the sources we'd like to include and the path to our data,  
 1. call `Dataset.compile`
@@ -32,18 +33,33 @@ This will process all sources and build a final `dataset.zip` file.
 The library is flexible, but here's the simplest and most common action we perform:
 
 ```python
-#hide_output
-from DataImporters.dataset import Dataset
+#hide_ouput
+from DataImporters.core import load_version
 
 DATA_PATH = "data/"
-SOURCES = [
-    "space_divers_mini",
-    "footsteps_one_ppsfx_004",
-    "footsteps_two_ppsfx_008",
-    "edward_v1.1"
+VERSION = load_version()
+```
+
+```python
+#hide_output
+from DataImporters.sources.core import process
+from DataImporters.sources.space_divers_mini import SpaceDiversMini
+from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
+from DataImporters.sources.footsteps_two_ppsfx import FootstepsTwoPpsfx
+from DataImporters.sources.edward import Edward
+from DataImporters.dataset import Dataset
+
+sources = [
+    SpaceDiversMini(),
+    FootstepsOnePpsfx(),
+    FootstepsTwoPpsfx(),
+    Edward()
 ]
 
-metadata = Dataset(SOURCES, DATA_PATH).compile()
+for source in sources:
+    process(source, DATA_PATH, VERSION)
+
+metadata = Dataset(sources, DATA_PATH).compile()
 ```
 
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
