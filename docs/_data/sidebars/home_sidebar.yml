@@ -34,7 +34,7 @@ entries:
       title: Source / Footsteps Two PPSFX 008
       url: source_footsteps_two_ppsfx_008.html
     - output: web,pdf
-      title: Loader for Edward sound lib
+      title: Source / Edward v1.1
       url: source_edward_v1.1.html
     output: web
     title: DataImporters
