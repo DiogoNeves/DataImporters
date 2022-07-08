@@ -8,15 +8,18 @@ index = {"load_version": "00_core.ipynb",
          "AUDIO_EXTENSIONS": "04_sources_core.ipynb",
          "Source": "04_sources_core.ipynb",
          "normalise_label": "04_sources_core.ipynb",
+         "normalise_all_labels": "04_sources_core.ipynb",
          "get_footstep_type": "04_sources_core.ipynb",
          "get_filenames": "04_sources_core.ipynb",
          "get_hash": "04_sources_core.ipynb",
-         "sync_hashed_audio_files": "04_sources_core.ipynb",
-         "process": "04_sources_core.ipynb"}
+         "process": "04_sources_core.ipynb",
+         "LENGTH_THRESHOLD": "05_source_space_divers_mini.ipynb",
+         "SpaceDiversMini": "05_source_space_divers_mini.ipynb"}
 
 modules = ["core.py",
            "dataset.py",
-           "sources/core.py"]
+           "sources/core.py",
+           "sources/space_divers_mini.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 

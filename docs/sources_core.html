@@ -47,7 +47,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Source" class="doc_header"><code>class</code> <code>Source</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Source</code>(<strong><code>data_path</code></strong>)</p>
+<h2 id="Source" class="doc_header"><code>class</code> <code>Source</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Source</code>()</p>
 </blockquote>
 <p>All sources should implement this class.</p>
 
@@ -79,7 +79,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Source.get_files" class="doc_header"><code>Source.get_files</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_files</code>(<strong><code>root_path</code></strong>:<code>str</code>)</p>
+<h4 id="Source.get_files" class="doc_header"><code>Source.get_files</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L25" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_files</code>(<strong><code>root_dir</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>List of paths and files to process, as returned by <a href="/DataImporters/sources_core.html#get_filenames"><code>get_filenames</code></a>.</p>
 
@@ -91,7 +91,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Source.get_category" class="doc_header"><code>Source.get_category</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_category</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+<h4 id="Source.get_category" class="doc_header"><code>Source.get_category</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L29" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_category</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Category name for the given file (most sources hardcode a single category).</p>
 
@@ -103,7 +103,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Source.get_labels" class="doc_header"><code>Source.get_labels</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_labels</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+<h4 id="Source.get_labels" class="doc_header"><code>Source.get_labels</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_labels</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>List of labels for the given file.</p>
 
@@ -115,9 +115,9 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Source.get_extra" class="doc_header"><code>Source.get_extra</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_extra</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
+<h4 id="Source.get_extra" class="doc_header"><code>Source.get_extra</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Source.get_extra</code>(<strong><code>path</code></strong>:<code>str</code>, <strong><code>filename</code></strong>:<code>str</code>)</p>
 </blockquote>
-<p>Extra information for the given file.</p>
+<p>(Optional) Extra information for the given file.</p>
 
 </div>
 
@@ -146,10 +146,34 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="normalise_label" class="doc_header"><code>normalise_label</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>normalise_label</code>(<strong><code>label</code></strong>:<code>str</code>)</p>
+<h4 id="normalise_label" class="doc_header"><code>normalise_label</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L43" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>normalise_label</code>(<strong><code>label</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Normalise a label to be used in the metadata
 (<a href="/DataImporters/sources_core.html#process"><code>process</code></a> should call this automatically).</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="normalise_all_labels" class="doc_header"><code>normalise_all_labels</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L48" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>normalise_all_labels</code>(<strong><code>labels</code></strong>:<code>list</code>[<code>str</code>])</p>
+</blockquote>
 
 </div>
 
@@ -179,7 +203,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_footstep_type" class="doc_header"><code>get_footstep_type</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_footstep_type</code>(<strong><code>filename</code></strong>:<code>str</code>)</p>
+<h4 id="get_footstep_type" class="doc_header"><code>get_footstep_type</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_footstep_type</code>(<strong><code>filename</code></strong>:<code>str</code>)</p>
 </blockquote>
 
 </div>
@@ -216,7 +240,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_filenames" class="doc_header"><code>get_filenames</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L63" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_filenames</code>(<strong><code>root_path</code></strong>:<code>str</code>)</p>
+<h4 id="get_filenames" class="doc_header"><code>get_filenames</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_filenames</code>(<strong><code>root_dir</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>List audio filenames in the directory.</p>
 
@@ -248,7 +272,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_hash" class="doc_header"><code>get_hash</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_hash</code>(<strong><code>file_path</code></strong>:<code>str</code>)</p>
+<h4 id="get_hash" class="doc_header"><code>get_hash</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L70" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_hash</code>(<strong><code>file_path</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Get the xxhash64 hash of the file.</p>
 
@@ -287,7 +311,7 @@ nb_path: "nbs/04_sources_core.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="process" class="doc_header"><code>process</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process</code>(<strong><code>source</code></strong>:<a href="/DataImporters/sources_core.html#Source"><code>Source</code></a>)</p>
+<h4 id="process" class="doc_header"><code>process</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/core.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process</code>(<strong><code>source</code></strong>:<a href="/DataImporters/sources_core.html#Source"><code>Source</code></a>, <strong><code>data_dir</code></strong>:<code>str</code>, <strong><code>version</code></strong>:<code>int</code>)</p>
 </blockquote>
 <p>Process source and return the metadata.</p>
 
