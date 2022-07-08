@@ -55,7 +55,7 @@ def normalise_all_labels(labels: list[str]) -> list[str]:
 # Cell
 
 def get_footstep_type(filename: str) -> str:
-    step_types = ("walk", "scuffs", "stomps", "squishes", "wade", "scrape")
+    step_types = ("walk", "scuffs", "stomps", "squishes", "wade", "scrape", "run", "jump", "slide")
     for step in step_types:
         if step in filename.lower():
             return step
@@ -114,7 +114,8 @@ def process(source: Source, data_dir: str, version: int) -> pd.DataFrame:
     metadata = pd.DataFrame()
     metadata["filename"] = hashed_filenames = [_get_hashed_filename(path, filename)
                                                for path, filename in files]
-    metadata["category"] = [source.get_category(path, filename) for path, filename in files]
+    metadata["category"] = [normalise_label(source.get_category(path, filename))
+                            for path, filename in files]
     metadata["label"] = [",".join(normalise_all_labels(source.get_labels(path, filename)))
                          for path, filename in files]
     metadata["extra"] = [source.get_extra(path, filename) for path, filename in files]

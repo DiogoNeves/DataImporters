@@ -110,13 +110,15 @@ The scripts expect a data directory containing the audio folders:</p>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_one_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsOnePpsfx</span>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_two_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsTwoPpsfx</span>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.edward</span> <span class="kn">import</span> <span class="n">Edward</span>
+<span class="kn">from</span> <span class="nn">DataImporters.sources.barefoot_metal_sonniss</span> <span class="kn">import</span> <span class="n">BarefootMetalSonniss</span>
 <span class="kn">from</span> <span class="nn">DataImporters.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">SpaceDiversMini</span><span class="p">(),</span>
     <span class="n">FootstepsOnePpsfx</span><span class="p">(),</span>
     <span class="n">FootstepsTwoPpsfx</span><span class="p">(),</span>
-    <span class="n">Edward</span><span class="p">()</span>
+    <span class="n">Edward</span><span class="p">(),</span>
+    <span class="n">BarefootMetalSonniss</span><span class="p">()</span>
 <span class="p">]</span>
 
 <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
@@ -282,7 +284,7 @@ On the other hand, this will also let us know when a file has been deleted from 
       <td>Manipulate,Distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>6</td>
+      <td>13</td>
     </tr>
     <tr>
       <th>1</th>
@@ -291,7 +293,7 @@ On the other hand, this will also let us know when a file has been deleted from 
       <td>Impact,Crash_distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>6</td>
+      <td>13</td>
     </tr>
   </tbody>
 </table>

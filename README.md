@@ -47,13 +47,15 @@ from DataImporters.sources.space_divers_mini import SpaceDiversMini
 from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
 from DataImporters.sources.footsteps_two_ppsfx import FootstepsTwoPpsfx
 from DataImporters.sources.edward import Edward
+from DataImporters.sources.barefoot_metal_sonniss import BarefootMetalSonniss
 from DataImporters.dataset import Dataset
 
 sources = [
     SpaceDiversMini(),
     FootstepsOnePpsfx(),
     FootstepsTwoPpsfx(),
-    Edward()
+    Edward(),
+    BarefootMetalSonniss()
 ]
 
 for source in sources:
@@ -147,7 +149,7 @@ Here's an example from the sample code ran earlier:
       <td>Manipulate,Distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>6</td>
+      <td>13</td>
     </tr>
     <tr>
       <th>1</th>
@@ -156,7 +158,7 @@ Here's an example from the sample code ran earlier:
       <td>Impact,Crash_distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>6</td>
+      <td>13</td>
     </tr>
   </tbody>
 </table>
