@@ -45,7 +45,8 @@ nb_path: "nbs/03_sources.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">DataImporters.sources.space_divers_mini</span> <span class="kn">import</span> <span class="n">SpaceDiversMini</span>
-<span class="kn">from</span> <span class="nn">DataImporters.sources.core</span> <span class="kn">import</span> <span class="n">process</span><span class="p">,</span> <span class="n">remove_all_extensions</span>
+<span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_one_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsOnePpsfx</span>
+<span class="kn">from</span> <span class="nn">DataImporters.sources.core</span> <span class="kn">import</span> <span class="n">process</span><span class="p">,</span> <span class="n">remove_extension</span>
 </pre></div>
 
     </div>
@@ -213,13 +214,6 @@ nb_path: "nbs/03_sources.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="/DataImporters/sources_core.html#process"><code>process</code></a> does it for us, but the remaining methods expect filenames without an extension.</p>
-
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -227,44 +221,7 @@ nb_path: "nbs/03_sources.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_files</span> <span class="o">=</span> <span class="n">remove_all_extensions</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
-<span class="n">clean_files</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;../data/original/space_divers_mini/Samples&#39;, &#39;99S LT Manipulate - Distant&#39;),
- (&#39;../data/original/space_divers_mini/Samples&#39;,
-  &#39;99S LT Impact - Crash Distant A&#39;),
- (&#39;../data/original/space_divers_mini/Samples&#39;, &#39;99S LT Underwater - Move D&#39;)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">get_category</span><span class="p">(</span><span class="o">*</span><span class="n">clean_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">get_category</span><span class="p">(</span><span class="o">*</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -297,7 +254,7 @@ nb_path: "nbs/03_sources.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">get_labels</span><span class="p">(</span><span class="o">*</span><span class="n">clean_files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">get_labels</span><span class="p">(</span><span class="o">*</span><span class="n">files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -313,6 +270,49 @@ nb_path: "nbs/03_sources.ipynb"
 
 <div class="output_text output_subarea output_execute_result">
 <pre>[&#39;Underwater&#39;, &#39; Move&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Some sources require preloading (in this case, to load the extra metadata)</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">FootstepsOnePpsfx</span><span class="p">()</span>
+<span class="n">source</span><span class="o">.</span><span class="n">preload</span><span class="p">(</span><span class="n">SOURCE_DATA_PATH</span><span class="p">)</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">SOURCE_DATA_PATH</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">source</span><span class="o">.</span><span class="n">get_extra</span><span class="p">(</span><span class="o">*</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Footsteps Snow Deep Boots Scuffs Shuffle Full Powder Fluffy Smooth Sony D50&#39;</pre>
 </div>
 
 </div>

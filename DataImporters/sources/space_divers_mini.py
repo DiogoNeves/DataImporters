@@ -34,8 +34,8 @@ class SpaceDiversMini(Source):
         return "sci-fi"
 
     def get_labels(self, path: str, filename: str) -> list[str]:
-        # Remove the prefix and extension
-        title = filename.removeprefix("99S LT ")
+        # Remove the prefix
+        title = remove_extension(filename).removeprefix("99S LT ")
         *labels, specific_label = title.split("-")
         labels = [l.strip() for label in labels for l in label.split()]
         # Remove the variant at the end

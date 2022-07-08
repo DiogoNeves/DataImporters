@@ -11,16 +11,18 @@ index = {"load_version": "00_core.ipynb",
          "normalise_all_labels": "04_sources_core.ipynb",
          "get_footstep_type": "04_sources_core.ipynb",
          "get_filenames": "04_sources_core.ipynb",
-         "remove_all_extensions": "04_sources_core.ipynb",
+         "remove_extension": "04_sources_core.ipynb",
          "get_hash": "04_sources_core.ipynb",
          "process": "04_sources_core.ipynb",
          "LENGTH_THRESHOLD": "05_source_space_divers_mini.ipynb",
-         "SpaceDiversMini": "05_source_space_divers_mini.ipynb"}
+         "SpaceDiversMini": "05_source_space_divers_mini.ipynb",
+         "FootstepsOnePpsfx": "06_source_footsteps_one_ppsfx_004.ipynb"}
 
 modules = ["core.py",
            "dataset.py",
            "sources/core.py",
-           "sources/space_divers_mini.py"]
+           "sources/space_divers_mini.py",
+           "sources/footsteps_one_ppsfx.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 
