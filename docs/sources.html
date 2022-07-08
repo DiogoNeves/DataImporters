@@ -45,7 +45,7 @@ nb_path: "nbs/03_sources.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">DataImporters.sources.space_divers_mini</span> <span class="kn">import</span> <span class="n">SpaceDiversMini</span>
-<span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_one_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsOnePpsfx</span>
+<span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_two_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsTwoPpsfx</span>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.core</span> <span class="kn">import</span> <span class="n">process</span><span class="p">,</span> <span class="n">remove_extension</span>
 </pre></div>
 
@@ -294,9 +294,9 @@ nb_path: "nbs/03_sources.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">FootstepsOnePpsfx</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">FootstepsTwoPpsfx</span><span class="p">()</span>
 <span class="n">source</span><span class="o">.</span><span class="n">preload</span><span class="p">(</span><span class="n">SOURCE_DATA_PATH</span><span class="p">)</span>
-<span class="n">files</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">SOURCE_DATA_PATH</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">get_files</span><span class="p">(</span><span class="n">SOURCE_DATA_PATH</span><span class="p">)[</span><span class="mi">4</span><span class="p">]</span>
 <span class="n">source</span><span class="o">.</span><span class="n">get_extra</span><span class="p">(</span><span class="o">*</span><span class="n">files</span><span class="p">)</span>
 </pre></div>
 
@@ -312,7 +312,7 @@ nb_path: "nbs/03_sources.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;Footsteps Snow Deep Boots Scuffs Shuffle Full Powder Fluffy Smooth Sony D50&#39;</pre>
+<pre>array([], dtype=object)</pre>
 </div>
 
 </div>

@@ -16,13 +16,15 @@ index = {"load_version": "00_core.ipynb",
          "process": "04_sources_core.ipynb",
          "LENGTH_THRESHOLD": "05_source_space_divers_mini.ipynb",
          "SpaceDiversMini": "05_source_space_divers_mini.ipynb",
-         "FootstepsOnePpsfx": "06_source_footsteps_one_ppsfx_004.ipynb"}
+         "FootstepsOnePpsfx": "06_source_footsteps_one_ppsfx_004.ipynb",
+         "FootstepsTwoPpsfx": "07_source_footsteps_two_ppsfx_008.ipynb"}
 
 modules = ["core.py",
            "dataset.py",
            "sources/core.py",
            "sources/space_divers_mini.py",
-           "sources/footsteps_one_ppsfx.py"]
+           "sources/footsteps_one_ppsfx.py",
+           "sources/footsteps_two_ppsfx.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 

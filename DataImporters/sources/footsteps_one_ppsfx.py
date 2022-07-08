@@ -7,8 +7,6 @@ __all__ = ['FootstepsOnePpsfx']
 from .core import *
 
 import os
-import string
-import re
 import pandas as pd
 
 # Cell
@@ -43,7 +41,7 @@ class FootstepsOnePpsfx(Source):
         step_label = get_footstep_type(filename)
         if step_label is not None:
             filename = filename.lower().replace(" " + step_label, "")
-            labels.append(normalise_label(step_label))
+            labels.append(step_label)
 
         labels.append(filename)
 

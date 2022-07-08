@@ -60,7 +60,7 @@ nb_path: "nbs/06_source_footsteps_one_ppsfx_004.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FootstepsOnePpsfx" class="doc_header"><code>class</code> <code>FootstepsOnePpsfx</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/footsteps_one_ppsfx.py#L16" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FootstepsOnePpsfx</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
+<h2 id="FootstepsOnePpsfx" class="doc_header"><code>class</code> <code>FootstepsOnePpsfx</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/footsteps_one_ppsfx.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FootstepsOnePpsfx</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
 </blockquote>
 <p>All sources should implement this class.</p>
 
@@ -111,7 +111,7 @@ nb_path: "nbs/06_source_footsteps_one_ppsfx_004.ipynb"
         <span class="n">step_label</span> <span class="o">=</span> <span class="n">get_footstep_type</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>    
         <span class="k">if</span> <span class="n">step_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">step_label</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">normalise_label</span><span class="p">(</span><span class="n">step_label</span><span class="p">))</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step_label</span><span class="p">)</span>
         
         <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
