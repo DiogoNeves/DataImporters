@@ -36,6 +36,9 @@ entries:
     - output: web,pdf
       title: Source / Edward v1.1
       url: source_edward_v1.1.html
+    - output: web,pdf
+      title: Source / Barefoot on Metal by Sonniss
+      url: barefoot_metal_sonniss.html
     output: web
     title: DataImporters
   output: web
