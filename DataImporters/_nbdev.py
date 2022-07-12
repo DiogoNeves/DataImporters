@@ -21,7 +21,8 @@ index = {"load_version": "00_core.ipynb",
          "CLOTHES_PREFIX": "08_source_edward_v1.1.ipynb",
          "FOOTSTEPS_PREFIX": "08_source_edward_v1.1.ipynb",
          "Edward": "08_source_edward_v1.1.ipynb",
-         "BarefootMetalSonniss": "09_barefoot_metal_sonniss.ipynb"}
+         "BarefootMetalSonniss": "09_source_barefoot_metal_sonniss.ipynb",
+         "CustomFsd": "10_source_custom_fsd.ipynb"}
 
 modules = ["core.py",
            "dataset.py",
@@ -30,7 +31,8 @@ modules = ["core.py",
            "sources/footsteps_one_ppsfx.py",
            "sources/footsteps_two_ppsfx.py",
            "sources/edward.py",
-           "sources/barefoot_metal_sonniss.py"]
+           "sources/barefoot_metal_sonniss.py",
+           "sources/custom_fsd.py"]
 
 doc_url = "https://MetaphoraStudios.github.io/DataImporters/"
 

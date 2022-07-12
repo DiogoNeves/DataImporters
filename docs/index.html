@@ -111,6 +111,7 @@ The scripts expect a data directory containing the audio folders:</p>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.footsteps_two_ppsfx</span> <span class="kn">import</span> <span class="n">FootstepsTwoPpsfx</span>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.edward</span> <span class="kn">import</span> <span class="n">Edward</span>
 <span class="kn">from</span> <span class="nn">DataImporters.sources.barefoot_metal_sonniss</span> <span class="kn">import</span> <span class="n">BarefootMetalSonniss</span>
+<span class="kn">from</span> <span class="nn">DataImporters.sources.custom_fsd</span> <span class="kn">import</span> <span class="n">CustomFsd</span>
 <span class="kn">from</span> <span class="nn">DataImporters.dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
 
 <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span>
@@ -118,7 +119,8 @@ The scripts expect a data directory containing the audio folders:</p>
     <span class="n">FootstepsOnePpsfx</span><span class="p">(),</span>
     <span class="n">FootstepsTwoPpsfx</span><span class="p">(),</span>
     <span class="n">Edward</span><span class="p">(),</span>
-    <span class="n">BarefootMetalSonniss</span><span class="p">()</span>
+    <span class="n">BarefootMetalSonniss</span><span class="p">(),</span>
+    <span class="n">CustomFsd</span><span class="p">()</span>
 <span class="p">]</span>
 
 <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
@@ -129,22 +131,6 @@ The scripts expect a data directory containing the audio folders:</p>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1324</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

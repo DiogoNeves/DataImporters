@@ -47,6 +47,7 @@ from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
 from DataImporters.sources.footsteps_two_ppsfx import FootstepsTwoPpsfx
 from DataImporters.sources.edward import Edward
 from DataImporters.sources.barefoot_metal_sonniss import BarefootMetalSonniss
+from DataImporters.sources.custom_fsd import CustomFsd
 from DataImporters.dataset import Dataset
 
 sources = [
@@ -54,7 +55,8 @@ sources = [
     FootstepsOnePpsfx(),
     FootstepsTwoPpsfx(),
     Edward(),
-    BarefootMetalSonniss()
+    BarefootMetalSonniss(),
+    CustomFsd()
 ]
 
 for source in sources:
@@ -63,13 +65,6 @@ for source in sources:
 metadata = Dataset(sources, DATA_PATH).compile()
 metadata.shape[0]
 ```
-
-
-
-
-    1324
-
-
 
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
 

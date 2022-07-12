@@ -41,7 +41,10 @@ entries:
           url: source_edward_v1.1.html
         - output: web,pdf
           title: Barefoot on Metal by Sonniss
-          url: barefoot_metal_sonniss.html
+          url: source_barefoot_metal_sonniss.html
+        - output: web,pdf
+          title: Custom FSD
+          url: source_custom_fsd.html
         title: Sources
     output: web
     title: DataImporters
