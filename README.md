@@ -66,6 +66,13 @@ metadata = Dataset(sources, DATA_PATH).compile()
 metadata.shape[0]
 ```
 
+
+
+
+    1502
+
+
+
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
 
 We can use it to confirm we did indeed copy all files. Since the metadata aggregates all the source metadata, if a file is missing, it will still be in the metadata.  
@@ -151,7 +158,7 @@ Here's an example from the sample code ran earlier:
       <td>Manipulate,Distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>13</td>
+      <td>14</td>
     </tr>
     <tr>
       <th>1</th>
@@ -160,7 +167,7 @@ Here's an example from the sample code ran earlier:
       <td>Impact,Crash_distant</td>
       <td>NaN</td>
       <td>space_divers_mini</td>
-      <td>13</td>
+      <td>14</td>
     </tr>
   </tbody>
 </table>

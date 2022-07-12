@@ -3,7 +3,12 @@
 __all__ = ['load_version', 'bump_version']
 
 # Cell
+
 import os
+import glob
+import pandas as pd
+
+# Cell
 
 def load_version(version_path: str = "version"):
     with open(version_path, "r") as f:
