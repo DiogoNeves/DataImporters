@@ -66,7 +66,7 @@ nb_path: "nbs/10_source_custom_fsd.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Format-conversion">Format conversion<a class="anchor-link" href="#Format-conversion"> </a></h2><p>The <code>metadata.csv</code> includes the tags and no further title parsing is necessary.</p>
-<p>We also assume the category is the query and simply copy it over. <em>Later: with a small amount of processing to unescape the strings (e.g. <code>"test+query" -&gt; "test query"</code>).</em></p>
+<p>We also assume the category is the query and simply copy it over, with a small amount of processing to unescape the strings (e.g. <code>"test+query&amp;s=Rating+(highest+first)" -&gt; "test query"</code>).</p>
 
 </div>
 </div>
