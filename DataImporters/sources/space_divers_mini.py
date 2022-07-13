@@ -28,7 +28,7 @@ class SpaceDiversMini(Source):
 
     def get_files(self, root_dir: str) -> list[tuple[str, str]]:
         samples_dir = os.path.join(root_dir, "Samples")
-        return _filter_long_files(get_filenames(samples_dir))
+        return _filter_long_files(get_audio_filenames(samples_dir))
 
     def get_category(self, path: str, filename: str) -> str:
         return "sci-fi"

@@ -20,7 +20,7 @@ class Edward(Source):
 
     def get_files(self, root_dir: str) -> list[tuple[str, str]]:
         samples_dir = os.path.join(root_dir, "WAV")
-        return get_filenames(samples_dir)
+        return get_audio_filenames(samples_dir)
 
     def get_category(self, path: str, filename: str) -> str:
         if CLOTHES_PREFIX in filename:

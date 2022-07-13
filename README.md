@@ -38,11 +38,19 @@ from DataImporters.core import load_version
 
 DATA_PATH = "data/"
 VERSION = load_version()
+VERSION
 ```
+
+
+
+
+    15
+
+
 
 ```python
 from DataImporters.sources.core import process
-from DataImporters.sources.space_divers_mini import SpaceDiversMini
+# from DataImporters.sources.space_divers_mini import SpaceDiversMini
 from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
 from DataImporters.sources.footsteps_two_ppsfx import FootstepsTwoPpsfx
 from DataImporters.sources.edward import Edward
@@ -51,7 +59,7 @@ from DataImporters.sources.custom_fsd import CustomFsd
 from DataImporters.dataset import Dataset
 
 sources = [
-    SpaceDiversMini(),
+    # SpaceDiversMini(), # Ignoring Sci-fi and this source doesn't include anything else
     FootstepsOnePpsfx(),
     FootstepsTwoPpsfx(),
     Edward(),
@@ -66,10 +74,13 @@ metadata = Dataset(sources, DATA_PATH).compile()
 metadata.shape[0]
 ```
 
+    Warning: 206 duplicate rows found. Some rows were dropped (all files copied).
 
 
 
-    1502
+
+
+    1646
 
 
 

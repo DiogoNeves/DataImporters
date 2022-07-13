@@ -11,27 +11,28 @@ import pandas as pd
 
 # Internal Cell
 
-def _clean_category_name(category_name):
-    return category_name.replace("+", " ").split("&")[0]
+def _clean_category_name(query):
+    return query.replace("+", " ").split("&")[0]
 
 # Cell
 
 class CustomFsd(Source):
     def preload(self, root_dir: str):
-        metadata_path = os.path.join(root_dir, "metadata.csv")
+        # Load all metadata.csv files into a single dataframe.
         columns = ["id", "filename", "category", "tags"]
-        self.metadata = pd.read_csv(metadata_path, header=None, names=columns)
+        samples_dir = os.path.join(root_dir, "samples")
+        self.metadata = pd.concat([pd.read_csv(os.path.join(path, f), header=None, names=columns)
+                                   for path, f in get_filenames(samples_dir, ".csv")])
 
     @property
     def name(self) -> str:
         return "custom_fsd"
 
     def get_files(self, root_dir: str) -> list[tuple[str, str]]:
-        return get_filenames(root_dir)
+        return get_audio_filenames(root_dir)
 
     def get_category(self, path: str, filename: str) -> str:
-        category = self.metadata.loc[self.metadata["filename"] == filename, "category"].values[0]
-        return _clean_category_name(category)
+        return os.path.basename(path)
 
     def get_labels(self, path: str, filename: str) -> list[str]:
         tags = self.metadata.loc[self.metadata["filename"] == filename, "tags"].values[0]

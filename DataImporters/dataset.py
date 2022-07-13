@@ -52,6 +52,12 @@ class Dataset:
         for source in self.sources:
             source_metadata = self._compile_source(source)
             dataset_metadata = pd.concat([dataset_metadata, source_metadata])
+
+        clean_dataset = dataset_metadata.drop_duplicates("filename")
+        diff = len(dataset_metadata) - len(clean_dataset)
+        if diff != 0:
+            print(f"Warning: {diff} duplicate rows found. Some rows were dropped (all files copied).")
+            dataset_metadata = clean_dataset
         dataset_metadata.to_csv(self.metadata_output_path, index=False)
 
         self._package_data()

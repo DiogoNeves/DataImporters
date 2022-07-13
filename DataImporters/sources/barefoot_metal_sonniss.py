@@ -16,7 +16,7 @@ class BarefootMetalSonniss(Source):
         return "barefoot_metal_sonniss"
 
     def get_files(self, root_dir: str) -> list[tuple[str, str]]:
-        return get_filenames(root_dir)
+        return get_audio_filenames(root_dir)
 
     def get_category(self, path: str, filename: str) -> str:
         return "footsteps"
