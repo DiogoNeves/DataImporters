@@ -5,6 +5,7 @@ __all__ = ['Dataset']
 # Cell
 
 from .sources.core import Source, process
+from .annotation import load_annotations, apply_annotations
 
 import os
 import shutil
@@ -20,6 +21,11 @@ def _sync_audio_files(source_dir: str, target_dir: str):
             if not os.path.exists(target_file_path):
                 shutil.copy2(os.path.join(source_dir, filename), target_file_path)
 
+def _delete_audio_files(filenames: str, target_dir: str):
+    """Deletes all audio files in target_dir."""
+    for _, row in filenames.iterrows():
+        os.remove(os.path.join(target_dir, row["filename"]))
+
 # Cell
 
 class Dataset:
@@ -29,6 +35,7 @@ class Dataset:
         self.intermediate_path = os.path.join(data_path, "intermediate/")
         self.output_path = os.path.join(data_path, "dataset/")
         self.audio_output_path = os.path.join(self.output_path, "audio/")
+        self.annotation_path = os.path.join(self.output_path, "annotations.csv")
         self.metadata_output_path = os.path.join(self.output_path, "metadata.csv")
 
     def _prepare_output(self):
@@ -40,11 +47,20 @@ class Dataset:
         _sync_audio_files(source_path, self.audio_output_path)
         return pd.read_csv(os.path.join(source_path, "metadata.csv"))
 
+    def _apply_annotations(self, dataset_metadata: pd.DataFrame):
+        if not os.path.exists(self.annotation_path):
+            return
+
+        annotations = load_annotations(self.annotation_path)
+        metadata = apply_annotations(annotations, dataset_metadata)
+        _delete_audio_files(annotations.deletes["filename"], self.audio_output_path)
+        return metadata
+
     def _package_data(self):
         # It syncs with existing dataset, only zipping changed files
         os.system("cd {} ; zip -qq -FSr dataset.zip dataset/".format(self.data_path))
 
-    def compile(self) -> pd.DataFrame:
+    def compile(self, use_annotations: bool = True) -> pd.DataFrame:
         """Compiles a dataset and returns the newly created metadata (already saved)."""
         self._prepare_output()
 
@@ -58,6 +74,8 @@ class Dataset:
         if diff != 0:
             print(f"Warning: {diff} duplicate rows found. Some rows were dropped (all files copied).")
             dataset_metadata = clean_dataset
+
+        dataset_metadata = self._apply_annotations(dataset_metadata)
         dataset_metadata.to_csv(self.metadata_output_path, index=False)
 
         self._package_data()
