@@ -71,26 +71,6 @@ for source in all_sources:
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    /home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb Cell 9 in <cell line: 18>()
-          <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=6'>7</a> from DataImporters.sources.custom_fsd import CustomFsd
-          <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=8'>9</a> all_sources = [
-         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=9'>10</a>     SpaceDiversMini(),
-         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=10'>11</a>     FootstepsOnePpsfx(),
-       (...)
-         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=14'>15</a>     CustomFsd()
-         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=15'>16</a> ]
-    ---> <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=17'>18</a> for source in sources:
-         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=18'>19</a>     process(source, DATA_PATH, VERSION)
-
-
-    NameError: name 'sources' is not defined
-
-
-
 Below are two examples, one creates a large dataset with the automatic processors, the other is a more balanced dataset, manually annotated.  
 Choose one to run and then jump to `Verify Output`
 
