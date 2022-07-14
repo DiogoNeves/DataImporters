@@ -36,7 +36,7 @@ The library is flexible, but here's the simplest and most common action we perfo
 #hide_ouput
 from DataImporters.core import load_version
 
-DATA_PATH = "data/"
+DATA_DIR = "data/"
 VERSION = load_version()
 VERSION
 ```
@@ -67,7 +67,7 @@ all_sources = [
 ]
 
 for source in all_sources:
-    process(source, DATA_PATH, VERSION)
+    process(source, DATA_DIR, VERSION)
 ```
 
 
@@ -77,7 +77,7 @@ Choose one to run and then jump to `Verify Output`
 ### Larger Dataset
 
 ```python
-from DataImporters.dataset import Dataset
+from DataImporters.dataset import Dataset, DatasetPaths
 
 DATASET_NAME = "large"
 
@@ -90,7 +90,8 @@ sources = [
     CustomFsd()
 ]
 
-metadata = Dataset(sources, DATA_PATH, DATASET_NAME).compile()
+paths = DatasetPaths(DATA_DIR, DATASET_NAME)
+metadata = Dataset(sources, paths).compile()
 metadata.shape[0]
 ```
 
@@ -107,7 +108,7 @@ metadata.shape[0]
 ### Smaller and Annotated
 
 ```python
-from DataImporters.dataset import Dataset
+from DataImporters.dataset import Dataset, DatasetPaths
 
 DATASET_NAME = "small_balanced"
 
@@ -115,7 +116,8 @@ sources = [
     CustomFsd()
 ]
 
-metadata = Dataset(sources, DATA_PATH, DATASET_NAME).compile()
+paths = DatasetPaths(DATA_DIR, DATASET_NAME)
+metadata = Dataset(sources, paths).compile()
 metadata.shape[0]
 ```
 
@@ -138,7 +140,7 @@ On the other hand, this will also let us know when a file has been deleted from 
 
 ```python
 import os
-assert len(os.listdir(os.path.join(DATA_PATH, "dataset/audio/"))) == len(metadata)
+assert len(os.listdir(paths.audio_output_path)) == len(metadata)
 ```
 
 Everything is looking good, we should bump the `version`.
@@ -216,7 +218,7 @@ Here's an example from the sample code ran earlier:
       <td>Horror</td>
       <td>NaN</td>
       <td>custom_fsd</td>
-      <td>15</td>
+      <td>16</td>
     </tr>
     <tr>
       <th>1</th>
@@ -225,7 +227,7 @@ Here's an example from the sample code ran earlier:
       <td>Scary,Growl,Monster,Zombie,Female,Scream</td>
       <td>NaN</td>
       <td>custom_fsd</td>
-      <td>15</td>
+      <td>16</td>
     </tr>
   </tbody>
 </table>

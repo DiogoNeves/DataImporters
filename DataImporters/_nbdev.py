@@ -4,6 +4,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"load_version": "00_core.ipynb",
          "bump_version": "00_core.ipynb",
+         "DatasetPaths": "01_dataset.ipynb",
          "Dataset": "01_dataset.ipynb",
          "AUDIO_EXTENSION": "04_sources_core.ipynb",
          "Source": "04_sources_core.ipynb",
