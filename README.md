@@ -20,7 +20,7 @@ root
       |- dataset/ (generated)
 ```
 
-## How to use
+## How to Use
 
 To create a new dataset package, we simply:  
 1. Define and process all sources,
@@ -44,22 +44,21 @@ VERSION
 
 
 
-    15
+    16
 
 
 
 ```python
 from DataImporters.sources.core import process
-# from DataImporters.sources.space_divers_mini import SpaceDiversMini
+from DataImporters.sources.space_divers_mini import SpaceDiversMini
 from DataImporters.sources.footsteps_one_ppsfx import FootstepsOnePpsfx
 from DataImporters.sources.footsteps_two_ppsfx import FootstepsTwoPpsfx
 from DataImporters.sources.edward import Edward
 from DataImporters.sources.barefoot_metal_sonniss import BarefootMetalSonniss
 from DataImporters.sources.custom_fsd import CustomFsd
-from DataImporters.dataset import Dataset
 
-sources = [
-    # SpaceDiversMini(), # Ignoring Sci-fi and this source doesn't include anything else
+all_sources = [
+    SpaceDiversMini(),
     FootstepsOnePpsfx(),
     FootstepsTwoPpsfx(),
     Edward(),
@@ -67,10 +66,69 @@ sources = [
     CustomFsd()
 ]
 
-for source in sources:
+for source in all_sources:
     process(source, DATA_PATH, VERSION)
+```
 
-metadata = Dataset(sources, DATA_PATH).compile()
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    /home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb Cell 9 in <cell line: 18>()
+          <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=6'>7</a> from DataImporters.sources.custom_fsd import CustomFsd
+          <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=8'>9</a> all_sources = [
+         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=9'>10</a>     SpaceDiversMini(),
+         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=10'>11</a>     FootstepsOnePpsfx(),
+       (...)
+         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=14'>15</a>     CustomFsd()
+         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=15'>16</a> ]
+    ---> <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=17'>18</a> for source in sources:
+         <a href='vscode-notebook-cell:/home/diogoneves/Projects/metaphora/DataImporters/nbs/index.ipynb#ch0000029?line=18'>19</a>     process(source, DATA_PATH, VERSION)
+
+
+    NameError: name 'sources' is not defined
+
+
+
+Below are two examples, one creates a large dataset with the automatic processors, the other is a more balanced dataset, manually annotated.  
+Choose one to run and then jump to `Verify Output`
+
+### Larger Dataset
+
+```python
+from DataImporters.dataset import Dataset
+
+DATASET_NAME = "large"
+
+# Same as `all_sources` excluding SpaceDiversMini
+sources = [
+    FootstepsOnePpsfx(),
+    FootstepsTwoPpsfx(),
+    Edward(),
+    BarefootMetalSonniss(),
+    CustomFsd()
+]
+
+metadata = Dataset(sources, DATA_PATH, DATASET_NAME).compile()
+metadata.shape[0]
+```
+
+    Warning: 206 duplicate rows found. Some rows were dropped (all files copied).
+
+
+### Smaller and Annotated
+
+```python
+from DataImporters.dataset import Dataset
+
+DATASET_NAME = "small_balanced"
+
+sources = [
+    CustomFsd()
+]
+
+metadata = Dataset(sources, DATA_PATH, DATASET_NAME).compile()
 metadata.shape[0]
 ```
 
@@ -80,9 +138,11 @@ metadata.shape[0]
 
 
 
-    1646
+    364
 
 
+
+### Verify Output
 
 `Dataset.compile` will return the newly created metadata _(which has already been saved to `DATA_PATH`)_.  
 

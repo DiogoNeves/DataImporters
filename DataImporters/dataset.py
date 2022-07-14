@@ -29,13 +29,20 @@ def _delete_audio_files(filenames: str, target_dir: str):
 # Cell
 
 class Dataset:
-    def __init__(self, sources: list[Source], data_path: str):
+    def __init__(
+        self,
+        sources: list[Source],
+        data_path: str,
+        dataset_name: str,
+        annotation_path: str = None
+    ):
         self.sources = sources
         self.data_path = data_path
+        self.dataset_name = dataset_name
         self.intermediate_path = os.path.join(data_path, "intermediate/")
-        self.output_path = os.path.join(data_path, "dataset/")
+        self.output_path = os.path.join(data_path, self.dataset_name)
         self.audio_output_path = os.path.join(self.output_path, "audio/")
-        self.annotation_path = os.path.join(self.output_path, "annotations.csv")
+        self.annotation_path = annotation_path
         self.metadata_output_path = os.path.join(self.output_path, "metadata.csv")
 
     def _prepare_output(self):
@@ -48,8 +55,8 @@ class Dataset:
         return pd.read_csv(os.path.join(source_path, "metadata.csv"))
 
     def _apply_annotations(self, dataset_metadata: pd.DataFrame):
-        if not os.path.exists(self.annotation_path):
-            return
+        if self.annotation_path is None or not os.path.exists(self.annotation_path):
+            return dataset_metadata
 
         annotations = load_annotations(self.annotation_path)
         metadata = apply_annotations(annotations, dataset_metadata)
@@ -58,7 +65,9 @@ class Dataset:
 
     def _package_data(self):
         # It syncs with existing dataset, only zipping changed files
-        os.system("cd {} ; zip -qq -FSr dataset.zip dataset/".format(self.data_path))
+        os.system(
+            f"cd {self.data_path} ; zip -qq -FSr {self.dataset_name}.zip {self.dataset_name}/"
+        )
 
     def compile(self, use_annotations: bool = True) -> pd.DataFrame:
         """Compiles a dataset and returns the newly created metadata (already saved)."""
