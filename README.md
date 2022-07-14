@@ -20,6 +20,10 @@ root
       |- dataset/ (generated)
 ```
 
+## Contributing
+
+We use **nbdev**, which compiles all notebooks into a package. The source is at the `nbs` folder.
+
 ## How to Use
 
 To create a new dataset package, we simply:  
