@@ -117,6 +117,13 @@ metadata.shape[0]
     Warning: 206 duplicate rows found. Some rows were dropped (all files copied).
 
 
+
+
+
+    1646
+
+
+
 ### Smaller and Annotated
 
 ```python
