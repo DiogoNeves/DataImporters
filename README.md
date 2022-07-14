@@ -211,21 +211,21 @@ Here's an example from the sample code ran earlier:
   <tbody>
     <tr>
       <th>0</th>
-      <td>beda557bed5629a2.wav</td>
-      <td>Sci_fi</td>
-      <td>Manipulate,Distant</td>
+      <td>a2abde886f52e83e.wav</td>
+      <td>Zombie_noises</td>
+      <td>Horror</td>
       <td>NaN</td>
-      <td>space_divers_mini</td>
-      <td>14</td>
+      <td>custom_fsd</td>
+      <td>15</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>56b3dae6f6efd75f.wav</td>
-      <td>Sci_fi</td>
-      <td>Impact,Crash_distant</td>
+      <td>af864f34b0f0c323.wav</td>
+      <td>Zombie_noises</td>
+      <td>Scary,Growl,Monster,Zombie,Female,Scream</td>
       <td>NaN</td>
-      <td>space_divers_mini</td>
-      <td>14</td>
+      <td>custom_fsd</td>
+      <td>15</td>
     </tr>
   </tbody>
 </table>
