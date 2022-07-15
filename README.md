@@ -125,13 +125,13 @@ metadata = Dataset(sources, paths).compile()
 metadata.shape[0]
 ```
 
-    Warning: 206 duplicate rows found. Some rows were dropped (all files copied).
+    Warning: 207 duplicate rows found. Some rows were dropped (all files copied).
 
 
 
 
 
-    364
+    367
 
 
 

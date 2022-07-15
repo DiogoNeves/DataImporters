@@ -28,6 +28,7 @@ index = {"load_version": "00_core.ipynb",
          "COLUMNS": "11_annotation.ipynb",
          "DELETE_KEYWORD": "11_annotation.ipynb",
          "Annotation": "11_annotation.ipynb",
+         "create_annotations": "11_annotation.ipynb",
          "load_annotations": "11_annotation.ipynb",
          "apply_annotations": "11_annotation.ipynb",
          "delete_row": "11_annotation.ipynb"}

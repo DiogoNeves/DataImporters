@@ -21,6 +21,7 @@ import pprint
 # Cell
 
 class DatasetPaths:
+    """Container for all the useful paths used to compile a `Dataset`."""
     def __init__(self, data_path: str, dataset_name: str, annotation_path: str = None):
         self.data_path = data_path
         self.dataset_name = dataset_name

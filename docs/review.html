@@ -37,6 +37,9 @@ nb_path: "nbs/12_review.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+<span class="n">DATASET_NAME</span> <span class="o">=</span> <span class="s2">&quot;small_balanced&quot;</span>
+<span class="n">annotation_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s2">&quot;annotations&quot;</span><span class="p">,</span> <span class="n">DATASET_NAME</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span><span class="p">)</span>
+<span class="n">PATHS</span> <span class="o">=</span> <span class="n">DatasetPaths</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="n">DATASET_NAME</span><span class="p">,</span> <span class="n">annotation_path</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -53,7 +56,11 @@ nb_path: "nbs/12_review.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset_metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/dataset/metadata.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">metadata_output_path</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">annotation_path</span><span class="p">):</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">load_annotations</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">annotation_path</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">annotations</span> <span class="o">=</span> <span class="n">create_annotations</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -63,6 +70,24 @@ nb_path: "nbs/12_review.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Review-Plan">Review Plan<a class="anchor-link" href="#Review-Plan"> </a></h2><ol>
+<li>Look at a category at a time and</li>
+<li>Play sounds and show their labels</li>
+<li>Change the labels if necessary (add row to annotation)</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start by looking at the available categories:</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -70,44 +95,8 @@ nb_path: "nbs/12_review.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Footsteps&#39;, &#39;Clothes_movement&#39;, &#39;Zombie_noises&#39;, &#39;Drone&#39;, &#39;Ghost&#39;,
-       &#39;Ship_horn&#39;, &#39;Alien&#39;, &#39;Sword_hit&#39;, &#39;Glitch_effect&#39;, &#39;Monster_roar&#39;,
-       &#39;Laser&#39;, &#39;Bending&#39;, &#39;Robot_movement&#39;, &#39;Silly_effect&#39;, &#39;Birds&#39;,
-       &#39;Wind&#39;, &#39;Wobble_effect&#39;, &#39;Wood_creak&#39;, &#39;Water&#39;, &#39;Wood&#39;],
-      dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Sci_fi&quot;</span><span class="p">,</span> <span class="s2">&quot;source&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">by_category</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -122,7 +111,10 @@ nb_path: "nbs/12_review.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([], dtype=object)</pre>
+<pre>array([&#39;Zombie_noises&#39;, &#39;Drone&#39;, &#39;Ghost&#39;, &#39;Ship_horn&#39;, &#39;Alien&#39;,
+       &#39;Sword_hit&#39;, &#39;Glitch_effect&#39;, &#39;Monster_roar&#39;, &#39;Laser&#39;, &#39;Bending&#39;,
+       &#39;Robot_movement&#39;, &#39;Footsteps&#39;, &#39;Silly_effect&#39;, &#39;Birds&#39;, &#39;Wind&#39;,
+       &#39;Wobble_effect&#39;, &#39;Wood_creak&#39;, &#39;Water&#39;, &#39;Wood&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -140,7 +132,7 @@ nb_path: "nbs/12_review.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;space_divers_mini&quot;</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">by_category</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -153,10 +145,195 @@ nb_path: "nbs/12_review.ipynb"
 <div class="output_area">
 
 
+<div class="output_html rendered_html output_subarea output_execute_result"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>array([], dtype=object)</pre>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>label</th>
+      <th>extra</th>
+      <th>source</th>
+      <th>version</th>
+    </tr>
+    <tr>
+      <th>category</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alien</th>
+      <td>12</td>
+      <td>12</td>
+      <td>0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>Bending</th>
+      <td>7</td>
+      <td>7</td>
+      <td>0</td>
+      <td>7</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>Birds</th>
+      <td>12</td>
+      <td>12</td>
+      <td>0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>Drone</th>
+      <td>27</td>
+      <td>27</td>
+      <td>0</td>
+      <td>27</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>Footsteps</th>
+      <td>29</td>
+      <td>29</td>
+      <td>0</td>
+      <td>29</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>Ghost</th>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Glitch_effect</th>
+      <td>25</td>
+      <td>25</td>
+      <td>0</td>
+      <td>25</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>Laser</th>
+      <td>28</td>
+      <td>28</td>
+      <td>0</td>
+      <td>28</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>Monster_roar</th>
+      <td>24</td>
+      <td>24</td>
+      <td>0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>Robot_movement</th>
+      <td>26</td>
+      <td>26</td>
+      <td>0</td>
+      <td>26</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>Ship_horn</th>
+      <td>26</td>
+      <td>26</td>
+      <td>0</td>
+      <td>26</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>Silly_effect</th>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Sword_hit</th>
+      <td>29</td>
+      <td>29</td>
+      <td>0</td>
+      <td>29</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>Water</th>
+      <td>26</td>
+      <td>26</td>
+      <td>0</td>
+      <td>26</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>Wind</th>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Wobble_effect</th>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Wood</th>
+      <td>17</td>
+      <td>17</td>
+      <td>0</td>
+      <td>17</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>Wood_creak</th>
+      <td>27</td>
+      <td>27</td>
+      <td>0</td>
+      <td>27</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>Zombie_noises</th>
+      <td>30</td>
+      <td>30</td>
+      <td>0</td>
+      <td>30</td>
+      <td>30</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 
 </div>
 
@@ -173,7 +350,59 @@ nb_path: "nbs/12_review.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_files</span> <span class="o">=</span> <span class="n">dataset_metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;space_divers_mini&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">param</span>
+<span class="kn">from</span> <span class="nn">panel.viewable</span> <span class="kn">import</span> <span class="n">Viewer</span>
+
+<span class="k">class</span> <span class="nc">MetadataRow</span><span class="p">(</span><span class="n">Viewer</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">change_keep_handler</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep</span><span class="o">.</span><span class="n">value</span>
+        
+        <span class="k">def</span> <span class="nf">change_label_handler</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        
+        <span class="k">def</span> <span class="nf">reset_handler</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">audio_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">audio_output_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_audio</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Audio</span><span class="p">(</span><span class="n">audio_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">],</span> <span class="n">loop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keep</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Keep?&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_category</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Category&quot;</span><span class="p">)</span>
+        <span class="n">label_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">MultiChoice</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">label_options</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">label_options</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Labels&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extra</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Extra&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;extra&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Source&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reset&quot;</span><span class="p">,</span> <span class="n">button_type</span><span class="o">=</span><span class="s2">&quot;danger&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keep</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">change_keep_handler</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">change_label_handler</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">reset_handler</span><span class="p">)</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_audio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extra</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source</span><span class="p">)</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_keep</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_category</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_labels</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_layout</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;## </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">),</span>
+            <span class="n">pn</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">Divider</span><span class="p">()</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__panel__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_layout</span>
+
+    <span class="k">def</span> <span class="nf">keep</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keep</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep</span><span class="p">()</span> <span class="k">else</span> <span class="n">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">changed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keep</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_row</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -190,8 +419,49 @@ nb_path: "nbs/12_review.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_audio_filenames</span><span class="p">(</span><span class="s2">&quot;data/dataset/&quot;</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="s2">&quot;filename&quot;</span><span class="p">])</span>
-<span class="n">all_files</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_annotations</span><span class="p">(</span><span class="n">views</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MetadataRow</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">create_annotations</span><span class="p">([</span><span class="n">v</span><span class="o">.</span><span class="n">row</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">views</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">changed</span><span class="p">()])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">annotations</span> <span class="o">=</span> <span class="n">create_annotations</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">views</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">steps</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">views</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MetadataRow</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">row</span><span class="p">))</span>
+
+<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">*</span><span class="n">views</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -204,21 +474,7 @@ nb_path: "nbs/12_review.ipynb"
 <div class="output_area">
 
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>0       f8f6bd99c4647f7e.wav
-1       1c3f9e2cccd78625.wav
-2       c00f3a0ec66ee9d2.wav
-3       737ef378d0d195f4.wav
-4       b6a799742aa36674.wav
-                ...         
-1641    6c602ee5209cfb3c.wav
-1642    0583af94369f5451.wav
-1643    1ad04f9e60a3605a.wav
-1644    fd8b46834a341e2c.wav
-1645    1fd5e305c60a1c78.wav
-Name: filename, Length: 1646, dtype: object</pre>
-</div>
+<div class="output_html rendered_html output_subarea output_execute_result"><div style="display: none"></div></div>
 
 </div>
 
@@ -235,7 +491,9 @@ Name: filename, Length: 1646, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dataset_metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">all_files</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">])]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">annotations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">annotations</span><span class="p">,</span> <span class="n">get_annotations</span><span class="p">(</span><span class="n">views</span><span class="p">)])</span>
+<span class="n">start</span> <span class="o">+=</span> <span class="n">steps</span>
+<span class="n">annotations</span>
 </pre></div>
 
     </div>
@@ -275,85 +533,48 @@ Name: filename, Length: 1646, dtype: object</pre>
     </tr>
   </thead>
   <tbody>
-  </tbody>
-</table>
-</div></div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_files</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">all_files</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">dataset_metadata</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">])]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>path</th>
-      <th>filename</th>
+    <tr>
+      <th>0</th>
+      <td>a2abde886f52e83e.wav</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>-1</td>
     </tr>
-  </thead>
-  <tbody>
+    <tr>
+      <th>1</th>
+      <td>af864f34b0f0c323.wav</td>
+      <td>Zombie_noises</td>
+      <td>Scary,Growl</td>
+      <td>NaN</td>
+      <td>custom_fsd</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>d476d5efbd2e55ba.wav</td>
+      <td>Zombie_noises</td>
+      <td>Undead</td>
+      <td>NaN</td>
+      <td>custom_fsd</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7a1d4ec46e7dab9e.wav</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>&lt;delete&gt;</td>
+      <td>-1</td>
+    </tr>
   </tbody>
 </table>
 </div></div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># for _, row in all_files.loc[~all_files[&quot;filename&quot;].isin(dataset_metadata[&quot;filename&quot;])].iterrows():</span>
-<span class="c1">#     os.remove(os.path.join(row[&quot;path&quot;], row[&quot;filename&quot;]))</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
