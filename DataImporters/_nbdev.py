@@ -25,13 +25,15 @@ index = {"load_version": "00_core.ipynb",
          "Edward": "08_source_edward_v1.1.ipynb",
          "BarefootMetalSonniss": "09_source_barefoot_metal_sonniss.ipynb",
          "CustomFsd": "10_source_custom_fsd.ipynb",
+         "Annotation": "11_annotation.ipynb",
          "COLUMNS": "11_annotation.ipynb",
          "DELETE_KEYWORD": "11_annotation.ipynb",
-         "Annotation": "11_annotation.ipynb",
          "create_annotations": "11_annotation.ipynb",
          "load_annotations": "11_annotation.ipynb",
          "apply_annotations": "11_annotation.ipynb",
-         "delete_row": "11_annotation.ipynb"}
+         "get_annotation_for": "11_annotation.ipynb",
+         "delete_row": "11_annotation.ipynb",
+         "is_deleted": "11_annotation.ipynb"}
 
 modules = ["core.py",
            "dataset.py",
