@@ -223,7 +223,7 @@ First we break the <code>query.csv</code> into one CSV per category, this helps 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="CustomFsd" class="doc_header"><code>class</code> <code>CustomFsd</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/custom_fsd.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CustomFsd</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
+<h2 id="CustomFsd" class="doc_header"><code>class</code> <code>CustomFsd</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/custom_fsd.py#L34" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CustomFsd</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
 </blockquote>
 <p>All sources should implement this class.</p>
 
@@ -260,7 +260,7 @@ First we break the <code>query.csv</code> into one CSV per category, this helps 
         <span class="k">return</span> <span class="n">get_audio_filenames</span><span class="p">(</span><span class="n">root_dir</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">get_category</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_category_renames</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
     
     <span class="k">def</span> <span class="nf">get_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">tags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;tags&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>

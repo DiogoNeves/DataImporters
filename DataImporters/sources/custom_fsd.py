@@ -14,6 +14,21 @@ import pandas as pd
 def _clean_category_name(query):
     return query.replace("+", " ").split("&")[0]
 
+# Internal Cell
+
+def _category_renames(category: str) -> str:
+    "Applies renaming rules to category names."
+    rules = [
+        ("ship_horn", "horn"),
+        ("robot_movement", "robot"),
+        ("zombie_noises", "zombie"),
+        ("sword_hit", "sword")
+    ]
+    for old, new in rules:
+        if category.lower() == old:
+            return new
+    return category
+
 # Cell
 
 class CustomFsd(Source):
@@ -32,7 +47,7 @@ class CustomFsd(Source):
         return get_audio_filenames(root_dir)
 
     def get_category(self, path: str, filename: str) -> str:
-        return os.path.basename(path)
+        return _category_renames(os.path.basename(path))
 
     def get_labels(self, path: str, filename: str) -> list[str]:
         tags = self.metadata.loc[self.metadata["filename"] == filename, "tags"].values[0]

@@ -16,6 +16,12 @@ entries:
       title: Dataset Building
       url: dataset.html
     - output: web,pdf
+      title: Reviewing Data
+      url: review.html
+    - output: web,pdf
+      title: Annotation
+      url: annotation.html
+    - output: web,pdf
       title: Dataset Stats
       url: dataset_stats.html
     - output: web,pdf

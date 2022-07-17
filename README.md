@@ -36,6 +36,8 @@ This will process all sources and build a final `dataset.zip` file.
 
 The library is flexible, but here's the simplest and most common action we perform:
 
+For annotations, see `nbs/12_review.ipynb` notebook.
+
 ```python
 #hide_ouput
 from DataImporters.core import load_version
@@ -112,26 +114,6 @@ metadata.shape[0]
 ### Smaller and Annotated
 
 ```python
-# We also want to apply simple rename rules
-from DataImporters.sources.core import normalise_label
-import pandas as pd
-
-def rename_categories(metadata: pd.DataFrame) -> pd.DataFrame:
-    replacements = [
-        (normalise_label("ship_horn"), normalise_label("horn")),
-        (normalise_label("robot_movement"), normalise_label("robot")),
-        (normalise_label("zombie_noises"), normalise_label("zombie")),
-        (normalise_label("sword_hit"), normalise_label("sword")),
-    ]
-
-    metadata = metadata.copy()
-    for old, new in replacements:
-        metadata.loc[metadata["category"] == old, "category"] = new
-
-    return metadata
-```
-
-```python
 from DataImporters.dataset import Dataset, DatasetPaths
 
 DATASET_NAME = "small_balanced"
@@ -142,7 +124,7 @@ sources = [
 ]
 
 paths = DatasetPaths(DATA_DIR, DATASET_NAME, ANNOTATION_PATH)
-metadata = Dataset(sources, paths).compile(rename_categories)
+metadata = Dataset(sources, paths).compile()
 metadata.shape[0]
 ```
 

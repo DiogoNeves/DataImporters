@@ -3,6 +3,8 @@
     "Overview": "/",
     "Core": "core.html",
     "Dataset Building": "dataset.html",
+    "Reviewing Data": "review.html",
+    "Annotation": "annotation.html",
     "Dataset Stats": "dataset_stats.html",
     "Working with Sources": "sources.html",
     "": {

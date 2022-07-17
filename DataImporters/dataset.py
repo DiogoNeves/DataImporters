@@ -17,7 +17,6 @@ import os
 import shutil
 import pandas as pd
 import pprint
-from typing import Callable
 
 # Cell
 
@@ -98,7 +97,7 @@ class Dataset:
             f"cd {self.paths.data_path} ; zip -qq -FSr {self.paths.dataset_name}.zip {self.paths.dataset_name}/"
         )
 
-    def compile(self, post_process: Callable[[pd.DataFrame], pd.DataFrame]) -> pd.DataFrame:
+    def compile(self) -> pd.DataFrame:
         """Compiles a dataset and returns the newly created metadata (already saved)."""
         self._prepare_output()
 
@@ -114,7 +113,6 @@ class Dataset:
             dataset_metadata = clean_dataset
 
         dataset_metadata = self._apply_annotations(dataset_metadata)
-        dataset_metadata = post_process(dataset_metadata)
         dataset_metadata.to_csv(self.paths.metadata_output_path, index=False)
 
         self._package_data()
