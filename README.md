@@ -48,7 +48,7 @@ VERSION
 
 
 
-    16
+    17
 
 
 
@@ -112,16 +112,37 @@ metadata.shape[0]
 ### Smaller and Annotated
 
 ```python
+# We also want to apply simple rename rules
+from DataImporters.sources.core import normalise_label
+import pandas as pd
+
+def rename_categories(metadata: pd.DataFrame) -> pd.DataFrame:
+    replacements = [
+        (normalise_label("ship_horn"), normalise_label("horn")),
+        (normalise_label("robot_movement"), normalise_label("robot")),
+        (normalise_label("zombie_noises"), normalise_label("zombie")),
+        (normalise_label("sword_hit"), normalise_label("sword")),
+    ]
+
+    metadata = metadata.copy()
+    for old, new in replacements:
+        metadata.loc[metadata["category"] == old, "category"] = new
+
+    return metadata
+```
+
+```python
 from DataImporters.dataset import Dataset, DatasetPaths
 
 DATASET_NAME = "small_balanced"
+ANNOTATION_PATH = os.path.join(DATA_DIR, "annotations", DATASET_NAME + ".csv")
 
 sources = [
     CustomFsd()
 ]
 
-paths = DatasetPaths(DATA_DIR, DATASET_NAME)
-metadata = Dataset(sources, paths).compile()
+paths = DatasetPaths(DATA_DIR, DATASET_NAME, ANNOTATION_PATH)
+metadata = Dataset(sources, paths).compile(rename_categories)
 metadata.shape[0]
 ```
 
@@ -131,7 +152,7 @@ metadata.shape[0]
 
 
 
-    367
+    284
 
 
 

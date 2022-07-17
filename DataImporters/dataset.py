@@ -17,6 +17,7 @@ import os
 import shutil
 import pandas as pd
 import pprint
+from typing import Callable
 
 # Cell
 
@@ -56,8 +57,8 @@ def _sync_audio_files(source_dir: str, target_dir: str):
 
 def _delete_audio_files(filenames: str, target_dir: str):
     """Deletes all audio files in target_dir."""
-    for _, row in filenames.iterrows():
-        os.remove(os.path.join(target_dir, row["filename"]))
+    for file in filenames:
+        os.remove(os.path.join(target_dir, file))
 
 # Cell
 
@@ -97,7 +98,7 @@ class Dataset:
             f"cd {self.paths.data_path} ; zip -qq -FSr {self.paths.dataset_name}.zip {self.paths.dataset_name}/"
         )
 
-    def compile(self) -> pd.DataFrame:
+    def compile(self, post_process: Callable[[pd.DataFrame], pd.DataFrame]) -> pd.DataFrame:
         """Compiles a dataset and returns the newly created metadata (already saved)."""
         self._prepare_output()
 
@@ -113,6 +114,7 @@ class Dataset:
             dataset_metadata = clean_dataset
 
         dataset_metadata = self._apply_annotations(dataset_metadata)
+        dataset_metadata = post_process(dataset_metadata)
         dataset_metadata.to_csv(self.paths.metadata_output_path, index=False)
 
         self._package_data()
