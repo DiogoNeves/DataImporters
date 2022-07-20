@@ -60,7 +60,7 @@ nb_path: "nbs/06_source_footsteps_one_ppsfx_004.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FootstepsOnePpsfx" class="doc_header"><code>class</code> <code>FootstepsOnePpsfx</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/footsteps_one_ppsfx.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FootstepsOnePpsfx</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
+<h2 id="FootstepsOnePpsfx" class="doc_header"><code>class</code> <code>FootstepsOnePpsfx</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/footsteps_one_ppsfx.py#L20" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FootstepsOnePpsfx</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
 </blockquote>
 <p>All sources should implement this class.</p>
 
@@ -100,7 +100,7 @@ nb_path: "nbs/06_source_footsteps_one_ppsfx_004.ipynb"
     
     <span class="k">def</span> <span class="nf">get_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="c1"># Remove the prefix</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">remove_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;Footsteps&quot;</span><span class="p">)</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">remove_prefix</span><span class="p">(</span><span class="n">remove_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s2">&quot;Footsteps&quot;</span><span class="p">)</span>
 
         <span class="c1"># Remove number at the end of the filename</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>

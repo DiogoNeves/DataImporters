@@ -59,7 +59,7 @@ The specific labels can have <code>A B C...</code> variants which get ignored.</
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="SpaceDiversMini" class="doc_header"><code>class</code> <code>SpaceDiversMini</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/space_divers_mini.py#L24" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SpaceDiversMini</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
+<h2 id="SpaceDiversMini" class="doc_header"><code>class</code> <code>SpaceDiversMini</code><a href="https://github.com/MetaphoraStudios/DataImporters/tree/main/DataImporters/sources/space_divers_mini.py#L30" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SpaceDiversMini</code>() :: <a href="/DataImporters/sources_core.html#Source"><code>Source</code></a></p>
 </blockquote>
 <p>All sources should implement this class.</p>
 
@@ -94,7 +94,7 @@ The specific labels can have <code>A B C...</code> variants which get ignored.</
     
     <span class="k">def</span> <span class="nf">get_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="c1"># Remove the prefix</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">remove_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;99S LT &quot;</span><span class="p">)</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">remove_prefix</span><span class="p">(</span><span class="n">remove_extension</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s2">&quot;99S LT &quot;</span><span class="p">)</span>
         <span class="o">*</span><span class="n">labels</span><span class="p">,</span> <span class="n">specific_label</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">label</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
         <span class="c1"># Remove the variant at the end</span>

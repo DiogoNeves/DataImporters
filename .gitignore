@@ -1,3 +1,6 @@
+# Platform
+.DS_Store
+
 # Project specific
 data/
 wget-log

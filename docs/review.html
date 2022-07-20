@@ -74,10 +74,10 @@ nb_path: "nbs/12_review.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Zombie&#39;, &#39;Horn&#39;, &#39;Sword&#39;, &#39;Glitch_effect&#39;, &#39;Monster_roar&#39;,
-       &#39;Laser&#39;, &#39;Bending&#39;, &#39;Robot&#39;, &#39;Footsteps&#39;, &#39;Wobble_effect&#39;,
-       &#39;Wood_creak&#39;, &#39;Water&#39;, &#39;Wood&#39;, &#39;Ghost&#39;, &#39;Alien&#39;, &#39;Birds&#39;],
-      dtype=object)</pre>
+<pre>array([&#39;Zombie_noises&#39;, &#39;Ship_horn&#39;, &#39;Sword_hit&#39;, &#39;Glitch_effect&#39;,
+       &#39;Monster_roar&#39;, &#39;Laser&#39;, &#39;Bending&#39;, &#39;Robot_movement&#39;, &#39;Footsteps&#39;,
+       &#39;Wobble_effect&#39;, &#39;Wood_creak&#39;, &#39;Water&#39;, &#39;Wood&#39;, &#39;Zombie&#39;, &#39;Ghost&#39;,
+       &#39;Horn&#39;, &#39;Alien&#39;, &#39;Sword&#39;, &#39;Robot&#39;, &#39;Birds&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -196,11 +196,11 @@ nb_path: "nbs/12_review.ipynb"
     </tr>
     <tr>
       <th>Horn</th>
-      <td>21</td>
-      <td>21</td>
+      <td>14</td>
+      <td>14</td>
       <td>0</td>
-      <td>21</td>
-      <td>21</td>
+      <td>14</td>
+      <td>14</td>
     </tr>
     <tr>
       <th>Laser</th>
@@ -220,19 +220,43 @@ nb_path: "nbs/12_review.ipynb"
     </tr>
     <tr>
       <th>Robot</th>
-      <td>11</td>
-      <td>11</td>
+      <td>6</td>
+      <td>6</td>
       <td>0</td>
-      <td>11</td>
-      <td>11</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Robot_movement</th>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Ship_horn</th>
+      <td>7</td>
+      <td>7</td>
+      <td>0</td>
+      <td>7</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>Sword</th>
-      <td>20</td>
-      <td>20</td>
+      <td>17</td>
+      <td>17</td>
       <td>0</td>
-      <td>20</td>
-      <td>20</td>
+      <td>17</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>Sword_hit</th>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>Water</th>
@@ -268,11 +292,19 @@ nb_path: "nbs/12_review.ipynb"
     </tr>
     <tr>
       <th>Zombie</th>
-      <td>24</td>
-      <td>24</td>
+      <td>22</td>
+      <td>22</td>
       <td>0</td>
-      <td>24</td>
-      <td>24</td>
+      <td>22</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>Zombie_noises</th>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -568,108 +600,8 @@ The cell after saves the results, you can do it as many times as needed.</p>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>0</th>
-      <td>a2abde886f52e83e.wav</td>
-      <td>Zombie_noises</td>
-      <td>Horror,Zombie,Growl</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>af864f34b0f0c323.wav</td>
-      <td>Zombie_noises</td>
-      <td>Growl,Scary,Zombie</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1dca9119f470d8aa.wav</td>
-      <td>Zombie_noises</td>
-      <td>Shotgun,Weapon,Gun,Shot,Beat,Game,Film,Beatz,H...</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>&lt;delete&gt;</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>a7d2d664a8cee0b6.wav</td>
-      <td>Zombie_noises</td>
-      <td>Scared,Screaming,Zombie</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>aa8dc1bf9cee4ec0.wav</td>
-      <td>Zombie_noises</td>
-      <td>Roar,Zombie</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>360</th>
-      <td>46199899f7dfe19b.wav</td>
-      <td>Footsteps</td>
-      <td>Footstep,Wood</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>361</th>
-      <td>7d60e1ecb6c81250.wav</td>
-      <td>Wood</td>
-      <td>Bass,Big,Boom,Kick,Low,Metal,Object,Thump</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>&lt;delete&gt;</td>
-    </tr>
-    <tr>
-      <th>362</th>
-      <td>6466b9383b5266be.wav</td>
-      <td>Wood</td>
-      <td>Block,Drum,Hit,Percussion,Percussive,Wood</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>363</th>
-      <td>6eec32c1d185045c.wav</td>
-      <td>Footsteps</td>
-      <td>Footstep,Wood</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>366</th>
-      <td>31b148355b690c8c.wav</td>
-      <td>Footsteps</td>
-      <td>Walking,Floor,Footstep,Walk,Step,Wood,Steps,Sh...</td>
-      <td>NaN</td>
-      <td>custom_fsd</td>
-      <td>16</td>
-    </tr>
   </tbody>
 </table>
-<p>269 rows × 6 columns</p>
 </div></div>
 
 </div>
@@ -687,7 +619,8 @@ The cell after saves the results, you can do it as many times as needed.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">annotations</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">annotation_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># and will override! Confirm they&#39;re correct above!</span>
+<span class="n">annotations</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">PATHS</span><span class="o">.</span><span class="n">annotation_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
